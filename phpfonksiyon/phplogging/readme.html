@@ -1,0 +1,188 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>All Hype PHP PHP Logging</title>
+<style type="text/css">
+  <!--
+body 
+  {
+  font-family: Arial, heltetica, verdana, sans-serif;
+  }
+h1 {
+font-size: 1.2em;
+}
+.blue {
+  color: blue;
+  }
+.red {
+  color: red;
+ }
+.green {
+   color: green;
+ }
+  -->
+</style>
+</head>
+<body>
+
+<h1>All Hype PHP Logging</h1>
+
+<p>
+<strong>All Hype PHP Logging 1.0</strong><br />
+<strong>Release Date:</strong> July 21st 2004<br />
+<strong>Requirements:</strong> PHP4. Ability to write files to the filesystem<br />
+<strong>URL:</strong> <a href="http://www.allhype.co.uk/phplogging/">www.allhype.co.uk/phplogging/</a>
+</p>
+
+<h1>About PHP Logging</h1>
+
+<p>
+  As a relatively new Java developer I have found out the benefits of systems like 
+  log4j. A simple to use, easy to integrate way to log actions performed by your application
+  during both development and deployment.
+</p>
+
+<p>
+  PHP Logging gives PHP applications a basic logging system.
+</p>
+
+<h1>Installation</h1>
+
+<p>
+  Upload the files <em>include/logging.inc.php</em> and <em>include/logging.conf.php</em>
+  to an include directory within your application. They must be in the same directory.
+</p>
+
+<p>
+  Make a directory to store the logs in somewhere. CHMOD this to 777 (writable to all).
+</p>
+
+<h1>Quick Start</h1>
+
+<p>
+  Once you have uploaded the required include files you will need to edit the logging.conf.php
+  file.
+</p>
+
+<p>
+<code style="font-weight: bold">
+$log_file <span class="blue">=</span> <span class="red">"logging.%s.log";</span><br />
+$log_path <span class="blue">=</span> <span class="red">"logs/";</span><br />
+$log_length <span class="blue">=</span> <span class="red">1;</span><br />
+$log_level <span class="blue">=</span> <span class="red">array("Dev","Warn","Db","Example","Login","Failed Login");</span><br />
+$log_show_errors <span class="blue">=</span> <span class="red">true;</span><br />
+$log_date <span class="blue">=</span> <span class="red">"Y-m-d h:i:s";</span>
+</code>
+</p>
+
+<p><strong>$log_file</strong><br />
+  The name for your log file. The default will be fine for this. You must include a '%s' somewhere in it
+  as this is where the current date gets put.
+</p>
+
+<p><strong>$log_path</strong><br />
+  The path, from the document root to the log directory. For example, when you FTP upload
+  your files, if you put them in a directory called 'htdocs', and put your log directory in
+  'htdocs/logs' then your log path is 'logs/'.
+</p>
+
+<p><strong>$log_length</strong><br />
+  Maximum size in MB for a single days logs. If the logs get to this limit event logging will
+  stop until the next day when a new log begins. Set to false to not limit this.
+</p>
+
+<p><strong>$log_level</strong><br />
+  An array of all the levels which want logging. When you try to add an event to the logs you must
+  specify a 'level' for the log. In the configuration you specify which events want writing to the log file.
+  This is useful for having some events logged in a development environment, and other things logging
+  in a live environment when you need to store different things.
+</p>
+
+<p>
+  You can make up your own log levels, and add them to the array. 
+  You can also specify "All" to log everything.
+  Do not use 'All' when attempting to add an event log as it will cause problems.
+</p>
+
+<p><strong>$log_show_errors</strong><br />
+  Displays any errors with PHP Logging on screen. These errors occur when the logging system cannot
+  write to the log files. Only use this in a development environment.
+</p>
+
+<p><strong>$log_date</strong><br />
+  Date format for use in the log files. This uses the standard PHP date() format.
+</p>
+
+
+<h1>Questions</h1>
+
+<p><strong>How do I make it log something?</strong><br />
+  You might want to take a look at the included basic_example.php and login_example.php files.
+  Bascially, you need to:
+</p>
+
+<ol>
+  <li>Include the logging.inc.php file on your PHP page.</li>
+  <li>Create a new logging class using <code>$log <span class="blue">=</span> <span class="green">new</span> logging;</code></li>
+  <li>Call the add method using <code>$log<span class="blue">-></span>add<span class="blue">(</span><span class="red">"The Message"</span>,<span class="red">"Example"</span><span class="blue">)</span>;</code></li>
+</ol>
+
+<p><strong>How do I add custom log levels?</strong><br />
+  To add a custom log level, the level (any word will do) must be within the array $log_level in the 
+  logging.conf.php file.
+</p>
+
+<p>
+  If I wanted the levels &quot;Development&quot; and &quot;Live&quot;, the $log_level array would look like this:<br />
+    <code>
+	$log_level <span class="blue">= array(</span><span class="red">"Development"</span>,<span class="red">"Live"</span><span class="blue">)</span>;
+	</code>
+	<br />
+	and I would add errors like this:<br />
+	<code>
+	  $log<span class="blue">-></span>add<span class="blue">(</span><span class="red">"My live error message"</span>,<span class="red">"Live"</span><span class="blue">)</span>;
+    </code>
+	<br />
+	<code>
+	  $log<span class="blue">-></span>add<span class="blue">(</span><span class="red">"My development error message"</span>,<span class="red">"Development"</span><span class="blue">)</span>;
+	</code>	
+
+
+</p>
+
+<p><strong>How do I log everything?</strong><br />
+  Set the $log_level array to:<br />
+     <code>
+	$log_level <span class="blue">= array(</span><span class="red">"All"</span><span class="blue">)</span>;
+	</code> 
+</p>
+
+<p><strong>How do I delete old log files?</strong><br />
+You can do this manually via FTP, or by setting up a cronjob on your server. PHP Logging does not do that
+bit.
+</p>
+
+<p><strong>How do I contact you?</strong><br />
+Bug reports can be filed <a href="http://www.allhype.co.uk/bugs/">here</a>.<br />
+General contact can be made at my <a href="http://www.allhype.co.uk/contact/">homepage</a>
+
+</p>
+
+<h1>Terms &amp; Conditions</h1>
+
+<p>
+All Hype PHP Logging is provided &quot;as-is&quot; with no warranty, implied or otherwise. It is not
+fit for any purpose. You may 
+use the product on any project however you wish. You can customise it 
+however you like. You may use aspects of the code for any other project. I don't mind.
+</p>
+
+<p>
+ You may not go round pretending you wrote it.
+</p>
+
+<div align="center">PHP Logging by <a href="http://www.allhype.co.uk/">www.allhype.co.uk</a><br />
+Copyright &copy; 2004 All Hype Design</div>
+
+</body>
+</html>

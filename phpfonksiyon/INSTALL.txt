@@ -1,0 +1,24 @@
+
+Installation notes:
+1. if your this far you have obviously unzipped the file dhu!! <<hate it when people tell you to unzip the file in there install or read
+me text files. like where supposed to see the readme.txt or install.txt before we unzip the file. just my $2 worth.
+2. make sure you have php installed, this has been tested in red hat linux and should work with any nix type os.
+   if you get it to work on win nt or win 2000 with iis hooray for you!!! so let me know dstjohn@mediacast1.com
+3. edit the config.php file to suit your sites needs, you will need your shoutcast servers ip, port and password 
+4. then ftp or telnet into your account and just upload the whole scast directory.
+5. you can use this as a standalone page or use the include function like so >> include ("scast/scaststatus.php");
+6. the file scaststatus.php is your main file i.e. index
+7. the scastxml_var file is to let you see what the variables are in order to modify this script just load it up
+after you edit the config file. this is tom's excellent work!!
+8. thats it your done!!
+///////////////////////////////////////////////////////////////////////
+what does this script do?
+well it grabs your shoutcast servers xml data and puts all that nice and neat info in to a neat little stat page, 
+completely customizable by you.
+//////////////////////////////////////////////////////////////////////
+any problems
+report bugs to 
+http://casterclub.com/forums
+
+we would like to know if you are using this script, please give us a link back using this code
+http://www.mediacast1.com

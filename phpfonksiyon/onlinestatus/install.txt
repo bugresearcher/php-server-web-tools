@@ -1,0 +1,78 @@
+Online Server Status v1.4, 
+Copyright 2001-2002 
+By Ryan Schwiebert, visit http://www.schwebdesigns.com/ 
+
+Concept derived from the perl based Abax Server Status 
+also available for free at: http://www.nathandickman.com/
+
+This script is free for commercial and non-commercial use as long as the
+following condition is adhered to:
+
+- All copyright notices within the script must remain intact and not be modified in anyway.
+
+What's New in version 1.4
+-------------------------
+- Fixed error some people were getting when a Port was not supplied.
+
+What's New in version 1.3
+-------------------------
+- Fixed error when checking server by IP number.
+
+Version 1.2
+-----------
+- The ability to check servers on ports other than the default of 80.
+
+
+Server Requirements
+-------------------
+
+-  Web server, with PHP installed.  
+-  PHP is available for free at: www.php.net.
+
+
+Setup
+-----
+
+1. Open the file status.php in a text editor.
+
+2. Edit the two lines pointing to the live and dead images to reflect your server.
+   If you wish to use a different live or dead image, indicate its path instead.
+   
+3. Upload all files to your web server.
+
+4. Access the page: www.yourserver.com/test.html
+   This should display the status of several test websites.
+   
+5. You can now create your own status checking page using test.html as a guide.
+   See instructions below for details.
+   
+
+How does the script work ?
+--------------------------
+
+The script is simple to implement.  Create a simple <img> tag that calls the status script
+as the source (src) and passes the url in the string. The image tag should look like the 
+one below.
+
+<img src="status.php?link=www.redhat.com" width="37" height="20">
+
+To check different servers, simply change the url to the url of the desired server.  A 
+common mistake is to leave of the "status.php?link=" portion of the source.  This will cause
+the script to not work properly.
+
+To check servers on a port other than 80, simply include the port in the url.  Your image tag should look like the 
+one below. It is not necessary to indicate the default port of 80.
+
+<img src="status.php?link=www.redhat.com:21" width="37" height="20">
+
+
+Who's Using It Now
+------------------
+
+If you are using the online status script I would really appreciate knowing, just drop me 
+an email with a link to your site.
+
+
+Thanks,
+Ryan Schwiebert
+schwieb@schwebdesigns.com

@@ -1,0 +1,13 @@
+11-09-2005 version 2.1
+	online.php minor html changes.
+	config.php script execution time set.
+	fixed date formate for playedat time var.
+	@ suppressed error messages for fclose and fsockopen functions
+
+
+05-05-2005
+HOLY CATFISH MARTHA, its an update
+patched the xml view page login procedure, with base64 encodiing, 
+login can no longer me sent via a query string munge.
+
+sometime in 2002 is when this script was born.
